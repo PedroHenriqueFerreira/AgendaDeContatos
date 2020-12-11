@@ -1,0 +1,23 @@
+CREATE TABLE users (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  password CHAR(32) NOT NULL
+);
+
+CREATE TABLE contacts (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  photo CHAR(100) NOT NULL,
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+CREATE TABLE telephones (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    number CHAR(20) NOT NULL,
+    contact_id INT NOT NULL,
+    FOREIGN KEY (contact_id) REFERENCES contacts (id)
+);

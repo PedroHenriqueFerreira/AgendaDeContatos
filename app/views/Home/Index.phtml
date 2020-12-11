@@ -1,0 +1,56 @@
+<?php require(__DIR__ . '/../components/Header.phtml') ?>
+<div class="container">
+  <div class="box" style="flex-direction: column;">
+    <?php if (!isset($_SESSION['id'])) { ?>
+      <h3 class="third-color">Cadastre seus contatos</h3>
+      <p style="max-width: 500px;">E ai? Ta procurando onde salvar seus contatos de forma segura e gratuíta? Nós temos solução, crie sua conta agora e user a qualquer hora em qualquer lugar!</p>
+    <?php } else { ?>
+      <h3 class="third-color">Lista de contatos</h3>
+      <?php if ($results) { ?>
+        <table class="responsive-table striped centered">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Endereço</th>
+              <th>Números</th>
+              <th>Perfil</th>
+              <?php if ($results) { ?>
+                <th>Opções</th>
+              <?php } ?>
+            </tr>
+          </thead>
+
+          <tbody>
+            <?php foreach ($results as $result) { ?>
+              <tr tabindex="1">
+                <td><?= str_replace('>', '&gt;', str_replace('<', '&lt;', $result->name)) ?></td>
+                <td><?= str_replace('>', '&gt;', str_replace('<', '&lt;', $result->email)) ?></td>
+                <td style="max-width: 300px;"><?= str_replace('>', '&gt;', str_replace('<', '&lt;', $result->address)) ?></td>
+                <td>
+                  <?php foreach ($result->telephones as $telephone) {
+                    echo str_replace('>', '&gt;', str_replace('<', '&lt;', $telephone)) . '<br>';
+                  } ?>
+                </td>
+                <td>
+                  <?php if ($result->photo !== '') { ?>
+                    <img src="<?= '/app/uploads/' . $result->photo ?>" class="user_img_table" alt="">
+                  <?php } else { ?>
+                    <i class="material-icons" style="font-size: 35px;">account_circle</i>
+                  <?php } ?>
+                </td>
+                <td>
+                  <a tabindex="1" href="/contact/<?= $result->id ?>/edit" class="material-icons icon-edit">create</a>
+                  <a tabindex="1" href="/delete" url="/contact/<?= $result->id ?>/delete" class="material-icons icon-delete">delete</a>
+                </td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+      <?php } else { ?>
+        <p>Sem contatos cadastrados no momento</p>
+      <?php } ?>
+    <?php } ?>
+  </div>
+</div>
+<?php require(__DIR__ . '/../components/Footer.phtml') ?>

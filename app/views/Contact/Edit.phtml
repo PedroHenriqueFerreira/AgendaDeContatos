@@ -1,0 +1,56 @@
+<?php require(__DIR__ . '/../components/Header.phtml') ?>
+<div class="container">
+  <div class="box">
+    <form id="contact_edit" class="column form">
+      <h3 class="third-color">Editar contato</h3>
+      <div class="input-field">
+        <input id="name" type="text" value="<?= $results->name ?>">
+        <input type="hidden" id="hidden" value="<?= $results->id ?>">
+        <label for="name" class="active">Nome</label>
+      </div>
+      <div class="input-field">
+        <input id="email" type="text" value="<?= $results->email ?>">
+        <label for="email" class="active">Email</label>
+      </div>
+      <div class="input-field">
+        <input id="address" type="text" value="<?= $results->address ?>">
+        <label for="address" class="<?php if ($results->address) echo 'active'; ?>">Endereço</label>
+      </div>
+      <?php for ($i = 0; $i <= sizeof($results->telephones) - 1; $i++) { ?>
+        <div class="input-field">
+          <input id="number_<?= $i + 1 ?>" type="tel" maxlength="19" value="<?= $results->telephones[$i] ?>">
+          <label for="number_<?= $i + 1 ?>" class="active">Número</label>
+        </div>
+        <?php if ($i != 0) { ?>
+          <a href="#" class="btn btn-light remove_number" style="font-size: 12px; text-align: right; margin-top: -15px">
+            <i class="material-icons right" style="margin-left: 4px;">delete</i> Remover
+          </a>
+        <?php } ?>
+      <?php } ?>
+      <a href="#" class="btn btn-light add_number" style="font-size: 12px; text-align: left; margin-bottom: 10px;">
+        + Adicionar número
+      </a>
+      <div class="file-field input-field">
+        <a href="#" class="btn btn-light contact_img_button" style="width: 100%; margin: -10px 0 !important;">
+
+          <?php if (!$results->photo) { ?>
+            <img src="data:image/svg+xml,%3Csvg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='user-circle' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512' class='svg-inline--fa fa-user-circle fa-w-16 fa-3x'%3E%3Cpath fill='%23a8a8b3' d='M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z' %3E%3C/path%3E%3C/svg%3E" class="user_img material-icons right" alt="">
+          <?php } else { ?>
+            <img src="<?= '/app/uploads/' . $results->photo ?>" class="user_img material-icons right" alt="">
+          <?php } ?>
+
+          <span>Foto para o contato</span>
+          <input type="file" id="photo" accept="image/*" tabindex="-1">
+        </a>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" style="display: none;">
+        </div>
+      </div>
+      <button class="waves-light waves-effect btn deep-purple darken-1 dark-color" style="width: 100%; margin: 10px 0;" type="submit">
+        Editar
+      </button>
+    </form>
+    <img src="/assets/add_contact.svg" class="column img" alt="">
+  </div>
+</div>
+<?php require(__DIR__ . '/../components/Footer.phtml') ?>

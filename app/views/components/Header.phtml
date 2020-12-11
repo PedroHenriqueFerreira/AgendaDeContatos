@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" href="/assets/icon.svg">
+  <title>Agenda</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body class="bg-dark">
+  <nav class="bg-dark" style="position: fixed; top: 0; z-index: 999">
+    <div class="nav-wrapper bg-dark">
+      <a href="/" class="brand-logo" style="padding-left: 50px; font-size: 22.5px;">
+        <img src="/assets/icon.svg" style="pointer-events: none;" alt="">
+        AGENDA
+      </a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down" style="padding-right: 50px;">
+        <?php if (isset($_SESSION['id'])) { ?>
+          <li><a href="/contact/add"><i z-index="-1" class="material-icons left">person_add</i>Adicionar contato</a></li>
+          <li>
+            <a href="#">
+              <i class="material-icons left">account_circle</i>
+              <?= str_replace('>', '&gt;', str_replace('<', '&lt;', $_SESSION['name'])) ?>
+            </a>
+          </li>
+          <li><a href="/logout">Sair</a></li>
+        <?php } else { ?>
+          <li><a href="/register">Cadastrar</a></li>
+          <li><a href="/login">Entrar</a></li>
+        <?php } ?>
+      </ul>
+    </div>
+  </nav>
+  <div class="progress" style="position: fixed; top: -9.5px; z-index: 99999; background: #121214;">
+    <div class="indeterminate-disabled" style="background: #04d361;"></div>
+  </div>
+
+  <ul class="sidenav bg-dark" id="mobile-demo" style="padding-top: 50px; z-index: 9999;">
+    <?php if (isset($_SESSION['id'])) { ?>
+      <li><a tabindex="-1" href="/contact/add">Adicionar contato</a></li>
+      <li>
+        <a tabindex="-1" href="#">
+          <?= str_replace('>', '&gt;', str_replace('<', '&lt;', $_SESSION['name'])) ?>
+        </a>
+      </li>
+      <li><a tabindex="-1" href="/logout">Sair</a></li>
+    <?php } else { ?>
+      <li><a tabindex="-1" href="/register">Cadastrar</a></li>
+      <li><a tabindex="-1" href="/login">Entrar</a></li>
+    <?php } ?>
+  </ul>

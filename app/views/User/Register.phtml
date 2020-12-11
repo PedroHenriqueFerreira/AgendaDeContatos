@@ -1,0 +1,32 @@
+<?php require(__DIR__ . '/../components/Header.phtml') ?>
+<div class="container">
+  <div class="box">
+    <form id="register" class="column form">
+      <h3 class="third-color">Cadastrar</h3>
+      <div class="input-field">
+        <input id="name" type="text">
+        <label for="name">Nome</label>
+      </div>
+      <div class="input-field">
+        <input id="email" type="email">
+        <label for="email">Email</label>
+      </div>
+      <div class="input-field">
+        <input id="password" type="password">
+        <label for="password">Senha</label>
+      </div>
+      <div class="input-field">
+        <input id="confirm-password" type="password">
+        <label for="confirm-password">Confirmar senha</label>
+      </div>
+      <button class="waves-light waves-effect btn deep-purple darken-1 dark-color" style="width: 100%; margin: 10px 0;" type="submit">
+        Cadastrar
+      </button>
+      <a href="/login" class="btn btn-light">
+        ou entre
+      </a>
+    </form>
+    <img src="/assets/login_img.svg" class="column img" alt="">
+  </div>
+</div>
+<?php require(__DIR__ . '/../components/Footer.phtml') ?>
