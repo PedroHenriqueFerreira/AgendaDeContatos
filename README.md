@@ -1,8 +1,8 @@
 ## Agenda de contatos
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=CONCLUÍDO&color=GREEN&style=for-the-badge)
+![Badge concluído](http://img.shields.io/static/v1?label=STATUS&message=CONCLUÍDO&color=GREEN&style=for-the-badge)
 
 ## Descrição do repositório
-Este projeto é uma agenda de contatos bem completa, foi construído sem frameworks por mim mesmo. 
+Este projeto é uma agenda de contatos bem completa, foi construído sem frameworks inteiramente por mim mesmo. 
 Possui carregamento dinâmico das páginas que imitam o reactJS.
 O backend foi construído no modelo MVC.
 
